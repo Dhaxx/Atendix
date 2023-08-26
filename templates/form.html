@@ -3,26 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atendimentos</title>
+    <title>Atendix | Agenda de Atendimentos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
 <body>
-    <section>
-        <div class="cabecalho">
-            <header>
-                <label for="menu-toggle" class="menu-icone">☰</label>
-                <h1>Atendimentos Diários</h1>
-                <input type="checkbox" id="menu-toggle">
-            </header>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="/static/saturn-logo.svg" alt="Logo-Saturno-Atendimentos">
+            <h1>Atendix</h1>
         </div>
-        <div class="corpo"></div>
+        <ul class="links">
+            <h4>Menu Principal</h4>
+            <li>
+                <span class="material-symbols-outlined">home</span>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <span class="material-symbols-outlined">view_list</span>
+                <a href="#">Atendimentos</a>
+            </li>
+            <li>
+                <span class="material-symbols-outlined">sticky_note_2</span>
+                <a href="#">Pendências</a>
+            </li>
+            <hr>
+            <h4>Conta</h4>
+            <li>
+                <span class="material-symbols-outlined">settings</span>
+                <a href="#">Configurações</a>
+            </li>
+            <li>
+                <span class="material-symbols-outlined">logout</span>
+                <a href="#">Sair</a>
+            </li>
+        </ul>
+    </aside>
+    <section>
+
     </section>
-    <div class="sidebar">
-        
-    </div>
 </body>
 </html>
-
-
 
 <style>
     * {
@@ -31,25 +51,111 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    section {
+    body {
+        background: url(https://images.unsplash.com/photo-1617374128851-c84e37dc9f37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80) no-repeat;
+        background-size: cover;
+        
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 110px;
+        height: 100%;
         display: flex;
+        align-items: center;
         flex-direction: column;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(17px);
+        --webkit-backdrop-filter: blur(17px);
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        transition: width 0.3s ease;
+    }
+
+    .sidebar:hover {
+        width: 260px;
+    }
+
+    .sidebar .logo {
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding: 25px 10px 15px;
+    }
+
+    .logo img {
+        width: 50px;
+    }
+
+    .logo h1 {
+        font-size: xx-large;
+        font-weight: 500;
+        margin-left: 10px;
+        display: none;
+    }
+
+    .sidebar:hover .logo h1{
+        display: block;
+    }
+
+    .sidebar .links {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .sidebar .links h4 {
+        color: #222;
+        font-weight: 500;
+        margin-bottom: 10px;
+        display: none;
+    }
+
+    .sidebar:hover .links h4 {
+        display: block;
+    }
+
+    .links li {
+        display: flex;
         align-items: center;
     }
 
-    .cabecalho {
-        background-color: white;
-        width: 100%;
-        height: 80px;
-        color: rgb(42, 70, 135);
-        border-bottom: 5px solid rgb(42, 70, 135);
-        position: relative;
+    .links li:hover {
+        border-radius: 90px;
+        cursor: pointer;
+        background-color: #ffffff36;
+        transition: background-color 0.3s linear;
     }
 
-    .cabecalho header {
+    .links hr {
+        border-color: #4c4c4c;
+        margin: 10px 8px;
+    }
+
+    .sidebar:hover .links hr {
+        border-color: transparent;
+    }
+
+    .links li span {
+        padding: 12px;
+    }
+
+    .links li a {
+        color: #000;
+        text-decoration: none;
+        padding: 10px;
+        font-weight: 500;
+        white-space: nowrap;
+        display: none;
+    }
+
+    .sidebar:hover .links li a {
+        display: block;
+    }
+
+    section {
         display: flex;
-        width: 30vw;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
     }
 
