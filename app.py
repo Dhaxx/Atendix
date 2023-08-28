@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, make_response
+from flask import Flask
+app = Flask(__name__, template_folder='templates')
 
-app = Flask(__name__)
+# Rotas dos outros módulos
+from login import login_bp
+from main import main_bp
 
-@app.route('/')
-def index():
-    return render_template("main.html")
+# Registrar os blueprints (rotas) no app
+app.register_blueprint(login_bp)
+app.register_blueprint(main_bp)
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=879)
