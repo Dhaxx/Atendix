@@ -5,6 +5,7 @@ O Projeto consiste em uma Aplicação Web para Registro de Atendimentos ao Clien
 ## Escopo
 - [X] Criar Banco de Dados
 - [ ] Tela de Login
+  - [X] Botão de Modo claro ou escuro + funcionalidade
   - [X] Criar tabela 'Usuários' no BD
   - [X] Layout
   - [ ] Registro de usuário

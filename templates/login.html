@@ -4,33 +4,54 @@
     <meta charset="UTF-8">
     <title>Atendix | Login</title>
     <link rel="icon" type="image/x-icon" href="/static/saturn-logo.svg">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 </head>
 <body>
     <header>
-        <div class="login-container">
-            <form action="{{ url_for('login.login') }}" method="post" class="formulario-login">
-                <div class="logo">
-                    <img src="/static/saturn-logo.svg" alt="Logo-Saturno-Atendimentos">
-                    <h1>Login</h1>
-                </div>
-                <div class="campo-input">
-                    <span class="material-symbols-outlined">person</span>
-                    <input type="text" class="campo" id="usuario" name="usuario" placeholder="Login" required>
-                </div>
-                <div class="campo-input">
-                    <span class="material-symbols-outlined">lock</span>
-                    <input type="password" class="campo" id="senha" name="senha" placeholder="Senha" required>
-                </div>
-                <div class="botoes">
-                    <button type="submit" class="botao">
-                        <span class="material-symbols-outlined">check</span>
-                        <h4>Confirmar</h4>
-                    </button>
-                </div>
-            </form>
+        <div class="botao-toggle">
+            <input type="checkbox" class="checkbox" id="chk"/>
+            <label for="chk" class="label">
+                <span class="material-symbols-rounded sol">brightness_high</span>
+                <span class="material-symbols-outlined lua">dark_mode</span>
+                <div class="ball"></div>
+            </label>
         </div>
     </header>
+    <div class="login-container">
+        <form action="{{ url_for('login.login') }}" method="post" class="formulario-login" id="formulario">
+            <div class="logo">
+                <img src="/static/saturn-logo.svg" alt="Logo-Saturno-Atendimentos">
+                <h1>Login</h1>
+            </div>
+            <div class="campo-input">
+                <span class="material-symbols-outlined">person</span>
+                <input type="text" class="campo" id="usuario" name="usuario" placeholder="Login" required>
+            </div>
+            <div class="campo-input">
+                <span class="material-symbols-outlined">lock</span>
+                <input type="password" class="campo" id="senha" name="senha" placeholder="Senha" required>
+            </div>
+            <div class="botoes">
+                <button class="botao">
+                    <span class="material-symbols-outlined"> clinical_notes </span>
+                    <h4>Registrar</h4>
+                </button>
+                <button type="submit" class="botao">
+                    <span class="material-symbols-outlined">check</span>
+                    <h4>Confirmar</h4>
+                </button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const chk = document.getElementById("chk");
+        const formulario = document.getElementById("formulario");
+        chk.addEventListener("change", () => {
+            document.body.classList.toggle('dark');
+            formulario.classList.toggle('dark-form');
+        });
+    </script>
 </body>
 </html>
 
@@ -41,8 +62,74 @@
         font-family: 'Poppins', sans-serif;
     }
 
+    .sol {
+        color: #f39c12;
+    }
+
+    .lua {
+        color: #f1c40f;
+        fill: rgba(0, 0, 0, 0.192);
+    }
+
     body{
         background-color: #ffffff;
+        transition: background 0.2s linear;
+    }
+
+    body.dark {
+        background: #232c35;
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    header .checkbox {
+        display: none;
+    }
+
+    .checkbox:checked + .label .ball {
+        transform: translateX(24px);
+    }
+
+    header .botao-toggle {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        background-color: transparent;
+        box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
+        user-select: none;
+    }
+
+    header .label {
+        background-color: #262f72;
+        border-radius: 50px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        position: relative;
+        height: 26px;
+        width: 50px;
+        transform: scale(1.0);
+        box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
+        user-select: none;
+    }
+
+    .label .ball {
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        height: 30px;
+        width: 30px;
+        transform: translateX(0px);
+        transition: transform 0.1s linear;
+        user-select: none;
     }
 
     .logo {
@@ -57,6 +144,7 @@
         width: 50px;
         border-right: 1px solid rgba(0, 0, 0, 0.192);
         padding-right: 15px;
+        user-select: none;
     }
 
     .logo h1 {
@@ -83,6 +171,7 @@
         border-radius: 34px;
         box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
         background-color: #FBFBFD;
+        transition: background 0.2s linear;
     }
 
     .campo-input {
@@ -97,6 +186,7 @@
     .campo-input .material-symbols-outlined {
         position: absolute;
         left: 2px;
+        user-select: none;
     }
 
     .campo-input input {
@@ -112,7 +202,7 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-around;
         width: 400px;
         margin-top: 20px;
     }
@@ -135,4 +225,8 @@
         transition: background-color 0.3s linear;
     }
 
+    body.dark .formulario-login {
+        background: #082c44; 
+        color: white; 
+    }
 </style>

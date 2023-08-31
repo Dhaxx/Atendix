@@ -15,7 +15,7 @@ def login():
     conn = sqlite3.connect("F:\\Kaio\\PROGRAMAÇÃO\\Atendimentos\\database\\saturndb")
     cursor = conn.cursor()
 
-    login = cursor.execute("SELECT * FROM Usuarios WHERE USUARIO = ? AND SENHA = ? AND STATUS = 'A'", (usuario, senha)).fetchone()
+    login = cursor.execute("SELECT * FROM USUARIOS WHERE USUARIO = ? AND SENHA = ? AND STATUS = 'A'", (usuario, senha)).fetchone()
 
     conn.close()
 
