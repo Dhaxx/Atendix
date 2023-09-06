@@ -8,7 +8,7 @@ O Projeto consiste em uma Aplicação Web para Registro de Atendimentos ao Clien
   - [X] Botão de Modo claro ou escuro + funcionalidade
   - [X] Criar tabela 'Usuários' no BD
   - [X] Layout
-  - [ ] Registro de usuário
+  - [X] Registro de usuário
   - [ ] Criptografar Senhas
   - [X] Validar Login
   - [ ] Cancelar Reenvio do form ao reiniciar página

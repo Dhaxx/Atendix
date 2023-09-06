@@ -7,12 +7,12 @@ login_bp = Blueprint("login", __name__)
 def index():
     return render_template("login.html")
 
-@login_bp.route('/login', methods=['POST'])
+@login_bp.route('/login', methods=['GET','POST'])
 def login():
     usuario = request.form.get('usuario')
     senha = request.form.get('senha')
 
-    conn = sqlite3.connect("F:\\Kaio\\PROGRAMAÇÃO\\Atendimentos\\database\\saturndb")
+    conn = sqlite3.connect("D:\Programação\Atendix\database\saturndb")
     cursor = conn.cursor()
 
     login = cursor.execute("SELECT * FROM USUARIOS WHERE USUARIO = ? AND SENHA = ? AND STATUS = 'A'", (usuario, senha)).fetchone()
