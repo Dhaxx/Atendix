@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import sqlite3
 import datetime
+import criptografia as cript
 
 register_bp = Blueprint("register", __name__)
 
@@ -11,12 +12,15 @@ def register():
         usuario = request.form.get('usuario')
         senha = request.form.get('senha')
         data_atual = datetime.datetime.now()
+        hash, salt = cript.hash(senha)
 
         conn = sqlite3.connect("D:\Programação\Atendix\database\saturndb")
         cursor = conn.cursor()
+        
 
-        cursor.execute("""insert into usuarios (usuario, senha, nome_completo, status, ult_acesso)
-                          values (?,?,?,'A',?)""",(usuario,senha,nome,data_atual))
+        cursor.execute("""insert into usuarios (usuario, senha, nome_completo, 
+                          status, ult_acesso, salt, hash)
+                          values (?,?,?,'A',?,?,?)""",(usuario,senha,nome,data_atual,salt,hash))
         conn.commit()
         conn.close()
 
