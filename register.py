@@ -9,12 +9,15 @@ register_bp = Blueprint("register", __name__)
 def register():
     if request.method == 'POST':
         nome = request.form.get('nome')
-        usuario = request.form.get('usuario')
+        if 'usuario' in request.form:
+            usuario = request.form.get('usuario').lower()
+        else:
+            usuario = None  # Defina para None ou outro valor padrão, dependendo da sua lógica
         senha = request.form.get('senha')
         data_atual = datetime.datetime.now()
-        hash, salt = cript.hash(senha)
+        hash, salt = cript.gera_hash(senha)
 
-        conn = sqlite3.connect("D:\Programação\Atendix\database\saturndb")
+        conn = sqlite3.connect("./database/saturndb")
         cursor = conn.cursor()
         
 
