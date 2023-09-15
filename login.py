@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 import sqlite3
 import criptografia as cript
 import datetime
@@ -27,6 +27,7 @@ def login():
                 data_atual = datetime.datetime.now()
                 cursor.execute("update usuarios set ult_acesso = ? where usuario = ?", (data_atual, login[1]))
                 conn.close()
+                session['usuario'] = request.form['usuario']
                 return redirect(url_for("main.main"))
         if salt is None or login is None:
             show_error = True

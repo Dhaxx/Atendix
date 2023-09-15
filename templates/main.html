@@ -37,22 +37,29 @@
                 <span class="material-symbols-outlined">logout</span>
                 <a href="#">Sair</a>
             </li>
-
-
-
         </ul>
     </aside>
     <section>
         <div class="wrapper">
             <h1>Cadastro de Atendimentos</h1>
-            <form action="" method="post"> <!--ACTION PARA BANCO DE DADOS-->
+            <form action="{{ url_for('atendimentos.registra_atendimento') }}" method="post"> <!--ACTION PARA BANCO DE DADOS-->
                 <div class="campo-input">
                     <span class="material-symbols-outlined">person</span>
                     <input type="text" class="campo" id="cliente" name="cliente" placeholder="Nome do Cliente" required>
                 </div>
                 <div class="campo-input">
+                    <span class="material-symbols-outlined"> account_balance </span>
+                    <input type="search" list="entities" name="entidade" placeholder="Tipo Entidade" id="entidade" required>
+                    <datalist id="entities">
+                        <option value="Prefeitura">Prefeitura</option>
+                        <option value="Camara">Camara</option>
+                        <option value="Serviço de Águas">Serviço de Águas</option>
+                        <option value="Previdência">Previdência</option>
+                    </datalist>
+                </div>
+                <div class="campo-input">
                     <span class="material-symbols-outlined">location_on</span>
-                    <input type="text" class="campo" id="localidade" name="localidade" placeholder="Cidade" required>
+                    <input type="text" class="campo" id="cidade" name="localidade" placeholder="Cidade" required>
                 </div>
                 <div class="campo-input">
                     <span class="material-symbols-outlined">history_edu</span>
@@ -203,7 +210,7 @@
         justify-content: space-evenly;
         white-space: nowrap;
         width: 350px;
-        height: 300px;
+        height: 400px;
         background: rgba(255, 255, 255, 0.404);
         backdrop-filter: blur(17px);
         --webkit-backdrop-filter: blur(17px);
@@ -228,10 +235,11 @@
     .campo-input .material-symbols-outlined {
         position: absolute;
         left: 2px;
+        margin-right: 20px;
     }
 
     .campo-input input {
-        padding-left: 25px;
+        padding-left: 28px;
         border-radius: 15px;
         height: 40px;
         width: 100%;
