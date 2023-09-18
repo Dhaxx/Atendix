@@ -50,8 +50,15 @@
                 {{ msg_erro }}
             </div>
             {% endif %}
+            <div class="cabecalho-form">
+                <a href="{{ url_for('main.main') }}">
+                    <button class="botao">
+                    <span class="material-symbols-outlined"> close </span>
+                </a>
+                </button>
+            </div>
             <h1>Cadastro de Atendimentos</h1>
-            <form action="{{ url_for('atendimentos.registra_atendimento') }}" method="post"> <!--ACTION PARA BANCO DE DADOS-->
+            <form action="{{ url_for('atendimentos.registra_atendimento') }}" method="post" id="formAtendimentos"> <!--ACTION PARA BANCO DE DADOS-->
                 <div class="campo-input">
                     <span class="material-symbols-outlined">person</span>
                     <input type="text" class="campo" id="cliente" name="cliente" placeholder="Nome do Cliente" required>
@@ -75,6 +82,10 @@
                     <input type="text" class="campo" id="observacoes" name="observacoes" placeholder="Observacao">
                 </div>
                 <div class="botoes">
+                    <button type="reset" class="botao">
+                        <span class="material-symbols-outlined"> mop </span>
+                        <h4>Limpar</h4>
+                    </button>
                     <button type="submit" class="botao">
                         <span class="material-symbols-outlined">check</span>
                         <h4>Confirmar</h4>
@@ -110,6 +121,10 @@
             }
         }
         showMessage("{{ msg_sucesso }}", "{{ msg_erro }}");
+
+        function limpaForm() {
+            document.getElementById("formAtendimentos").reset();
+        }
     </script>
 </body>
 </html>
@@ -254,6 +269,33 @@
         border-right: 1px solid rgba(255, 255, 255, 0.2);
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         border-radius:  9px;
+        transition: background 1s ease-in;
+    }
+
+    .wrapper .cabecalho-form {
+        display: flex;
+        width: 95%;
+        flex-direction: row-reverse;
+    }
+
+    .cabecalho-form .botao {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 90px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: #f0f0f0;
+        transition: background-color 0.2s linear;
+    }
+
+    .cabecalho-form .botao:hover {
+        border-radius: 90px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: #ffffff;
     }
 
     .wrapper h1 {
@@ -286,7 +328,7 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-evenly;
         width: 300px;
         margin-top: 20px;
     }

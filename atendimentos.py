@@ -4,6 +4,10 @@ import datetime
 
 atendimentos_bp = Blueprint("atendimentos", __name__)
 
+@atendimentos_bp.route('/')
+def fecha():
+    return render_template("main.html")
+
 @atendimentos_bp.route('/atendimentos', methods=['POST','GET'])
 def registra_atendimento():
     if request.method == 'POST' and 'usuario' in session:
@@ -24,9 +28,12 @@ def registra_atendimento():
             conn.commit()
             conn.close()
             mensagem = "Atendimento Registrado!"
-            return render_template("main.html", msg_sucesso=mensagem)
+            return render_template("atendimento.html", msg_sucesso=mensagem)
         except:
             mensagem = "Erro ao Salvar Atendimento!"
             conn.close()
-            return render_template("main.html", msg_erro=mensagem)
-    return render_template("atendimento.html")
+            return render_template("atendimento.html", msg_erro=mensagem)
+    elif request.method == 'GET':
+        return render_template("atendimento.html")
+    else:
+        return render_template("atendimento.html")
