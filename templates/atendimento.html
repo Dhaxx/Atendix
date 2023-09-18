@@ -39,6 +39,78 @@
             </li>
         </ul>
     </aside>
+    <section>
+        <div class="wrapper">
+            {% if msg_sucesso %} 
+            <div class="msg-confirmation-or-error" id="sucesso-msg">   <!--Apresenta msg de sucesso ao salvar atendimento--> 
+                {{ msg_sucesso }}
+            </div>
+            {% elif msg_erro %}
+            <div class="msg-confirmation-or-error" id="erro-msg">   <!--Apresenta msg de erro ao salvar atendimento--> 
+                {{ msg_erro }}
+            </div>
+            {% endif %}
+            <h1>Cadastro de Atendimentos</h1>
+            <form action="{{ url_for('atendimentos.registra_atendimento') }}" method="post"> <!--ACTION PARA BANCO DE DADOS-->
+                <div class="campo-input">
+                    <span class="material-symbols-outlined">person</span>
+                    <input type="text" class="campo" id="cliente" name="cliente" placeholder="Nome do Cliente" required>
+                </div>
+                <div class="campo-input">
+                    <span class="material-symbols-outlined"> account_balance </span>
+                    <input type="search" list="entities" name="entidade" placeholder="Tipo Entidade" id="entidade" required>
+                    <datalist id="entities">
+                        <option value="Prefeitura">Prefeitura</option>
+                        <option value="Camara">Camara</option>
+                        <option value="Serviço de Águas">Serviço de Águas</option>
+                        <option value="Previdência">Previdência</option>
+                    </datalist>
+                </div>
+                <div class="campo-input">
+                    <span class="material-symbols-outlined">location_on</span>
+                    <input type="text" class="campo" id="cidade" name="cidade" placeholder="Cidade" required>
+                </div>
+                <div class="campo-input">
+                    <span class="material-symbols-outlined">history_edu</span>
+                    <input type="text" class="campo" id="observacoes" name="observacoes" placeholder="Observacao">
+                </div>
+                <div class="botoes">
+                    <button type="submit" class="botao">
+                        <span class="material-symbols-outlined">check</span>
+                        <h4>Confirmar</h4>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <script>
+        function showMessage(msg_sucesso, msg_erro) {
+
+            if ("{{ msg_sucesso }}" != "") {
+                const MessageElementSucesso = document.getElementById("sucesso-msg");
+                MessageElementSucesso.textContent = msg_sucesso;
+                MessageElementSucesso.style.opacity = 1;
+                MessageElementSucesso.classList.add("sucesso");
+
+                setTimeout(function () {
+                    MessageElementSucesso.style.opacity = 0;
+                }, 3000);
+            }
+
+            if ("{{ msg_erro }}" != "") {
+                const MessageElementErro = document.getElementById("erro-msg");
+                MessageElementErro.textContent = msg_erro
+                MessageElementErro.style.opacity = 1;
+                MessageElementErro.classList.add("erro");
+
+                setTimeout(function () {
+                    MessageElementErro.style.opacity = 0;
+                }, 3000);
+            }
+        }
+        showMessage("{{ msg_sucesso }}", "{{ msg_erro }}");
+    </script>
 </body>
 </html>
 

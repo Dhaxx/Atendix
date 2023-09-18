@@ -29,3 +29,4 @@ def registra_atendimento():
             mensagem = "Erro ao Salvar Atendimento!"
             conn.close()
             return render_template("main.html", msg_erro=mensagem)
+    return render_template("atendimento.html")
