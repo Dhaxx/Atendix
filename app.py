@@ -22,4 +22,4 @@ app.register_blueprint(register_bp)
 app.register_blueprint(atendimentos_bp)
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=879)
+    app.run(host="0.0.0.0", port=879)

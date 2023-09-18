@@ -41,6 +41,15 @@
     </aside>
     <section>
         <div class="wrapper">
+            {% if msg_sucesso %} 
+            <div class="msg-confirmation-or-error" id="sucesso-msg">   <!--Apresenta msg de sucesso ao salvar atendimento--> 
+                {{ msg_sucesso }}
+            </div>
+            {% elif msg_erro %}
+            <div class="msg-confirmation-or-error" id="erro-msg">   <!--Apresenta msg de erro ao salvar atendimento--> 
+                {{ msg_erro }}
+            </div>
+            {% endif %}
             <h1>Cadastro de Atendimentos</h1>
             <form action="{{ url_for('atendimentos.registra_atendimento') }}" method="post"> <!--ACTION PARA BANCO DE DADOS-->
                 <div class="campo-input">
@@ -59,14 +68,14 @@
                 </div>
                 <div class="campo-input">
                     <span class="material-symbols-outlined">location_on</span>
-                    <input type="text" class="campo" id="cidade" name="localidade" placeholder="Cidade" required>
+                    <input type="text" class="campo" id="cidade" name="cidade" placeholder="Cidade" required>
                 </div>
                 <div class="campo-input">
                     <span class="material-symbols-outlined">history_edu</span>
                     <input type="text" class="campo" id="observacoes" name="observacoes" placeholder="Observacao">
                 </div>
                 <div class="botoes">
-                    <button type="button" class="botao">
+                    <button type="submit" class="botao">
                         <span class="material-symbols-outlined">check</span>
                         <h4>Confirmar</h4>
                     </button>
@@ -74,6 +83,34 @@
             </form>
         </div>
     </section>
+    
+    <script>
+        function showMessage(msg_sucesso, msg_erro) {
+
+            if ("{{ msg_sucesso }}" != "") {
+                const MessageElementSucesso = document.getElementById("sucesso-msg");
+                MessageElementSucesso.textContent = msg_sucesso;
+                MessageElementSucesso.style.opacity = 1;
+                MessageElementSucesso.classList.add("sucesso");
+
+                setTimeout(function () {
+                    MessageElementSucesso.style.opacity = 0;
+                }, 3000);
+            }
+
+            if ("{{ msg_erro }}" != "") {
+                const MessageElementErro = document.getElementById("erro-msg");
+                MessageElementErro.textContent = msg_erro
+                MessageElementErro.style.opacity = 1;
+                MessageElementErro.classList.add("erro");
+
+                setTimeout(function () {
+                    MessageElementErro.style.opacity = 0;
+                }, 3000);
+            }
+        }
+        showMessage("{{ msg_sucesso }}", "{{ msg_erro }}");
+    </script>
 </body>
 </html>
 
@@ -86,8 +123,7 @@
 
     body {
         background: url(https://images.unsplash.com/photo-1617374128851-c84e37dc9f37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80) no-repeat;
-        background-size: cover;
-        
+        background-size: cover;   
     }
 
     .sidebar {
@@ -271,5 +307,30 @@
         background-color: #394AC6;
         color: white;
         transition: background-color 0.3s linear;
+    }
+
+    /*Mensagem de Sucesso ou Erro*/
+    .msg-confirmation-or-error {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        padding: 5px;
+        top: -3%;
+        position: fixed;
+        color: #fff;
+        border-radius: 9px;
+        flex-wrap: nowrap;
+        transition: display 0.5s ease-out;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out; 
+    }
+
+    .sucesso {
+        background-color: #3ebc3c;
+    }
+
+    .erro {
+        background-color: #e54d42;
     }
 </style>
