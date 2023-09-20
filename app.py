@@ -8,6 +8,7 @@ from login import login_bp
 from main import main_bp
 from register import register_bp
 from atendimentos import atendimentos_bp
+from historico import historico_bp
 
 # Configurar Flask-Session
 chave_secreta = secrets.token_hex(32)
@@ -20,6 +21,7 @@ app.register_blueprint(login_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(register_bp)
 app.register_blueprint(atendimentos_bp)
+app.register_blueprint(historico_bp)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=879)

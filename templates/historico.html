@@ -49,15 +49,15 @@
                 </button>
             </div>
             <h1>Lista de atendimentos</h1>
-            <form action="" method="post" id="formHistorico"> <!--ACTION PARA BANCO DE DADOS-->
+            <form action="{{url_for('historico.historico')}}" method="post" id="formHistorico"> <!--ACTION PARA BANCO DE DADOS-->
                 <div class="periodo-atendimentos">
                     <div class="campo-input">
                         <span class="material-symbols-outlined">calendar_month</span>
-                        <input type="date" class="campo" id="dataInicial" name="Data Inicial" placeholder="Data Inicial" required>
+                        <input type="datetime-local" class="campo" id="dataInicial" name="dataInicial" placeholder="Data Inicial" required>
                     </div>
                     <div class="campo-input">
                         <span class="material-symbols-outlined">calendar_month</span>
-                        <input type="date" class="campo" id="dataFinal" name="Data Final" placeholder="Data Final" required>
+                        <input type="datetime-local" class="campo" id="dataFinal" name="dataFinal" placeholder="Data Final" required>
                     </div>
                     <div class="botoes">
                         <button type="submit" class="botao">
@@ -67,6 +67,28 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="grid-atendimentos">
+            <table id="tabelaAtendimentos" class="tabela-atendimentos">
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Entidade</th>
+                    <th>Município</th>
+                    <th>Observações</th>
+                    <th>Data do atendimento</th>
+                </tr>
+                {% for atendimento in atendimentos %}
+                    <tr>
+                        <td>{{ atendimento[0] }}</td>
+                        <td>{{ atendimento[1] }}</td>
+                        <td>{{ atendimento[2] }}</td>
+                        <td>{{ atendimento[3] }}</td>
+                        <td>{{ atendimento[4] }}</td>
+                        <td>{{ atendimento[5] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </section>
     
@@ -227,21 +249,24 @@
     
     .wrapper {
         display: flex;
+        position: absolute;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         white-space: nowrap;
+        top: 22px;
         width: 800px;
-        height: 800px;
+        height: 172px;
         background: rgba(255, 255, 255, 0.404);
         backdrop-filter: blur(17px);
         --webkit-backdrop-filter: blur(17px);
         border-left: 1px solid rgba(255, 255, 255, 0.2);
         border-right: 1px solid rgba(255, 255, 255, 0.2);
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius:  9px;
+        border-radius: 9px;
         transition: background 1s ease-in;
     }
+    
 
     .wrapper .cabecalho-form {
         display: flex;
@@ -314,7 +339,7 @@
     }
 
     .botoes .botao {
-        width: 100px;
+        width: 120px;
         flex-wrap: nowrap;
         height: 30px;
         border-radius: 90px;
@@ -330,6 +355,21 @@
         background-color: #394AC6;
         color: white;
         transition: background-color 0.3s linear;
+    }
+
+    .grid-atendimentos {
+        margin-top: 25px;
+        height: 75%;
+        width: 95%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        border-radius: 8px;
+    }
+
+    .tabela-atendimentos {
+        width: 100%;
+        background-color: #f0f0f0;
     }
 
     /*Mensagem de Sucesso ou Erro*/
