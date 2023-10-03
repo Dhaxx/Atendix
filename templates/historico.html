@@ -21,21 +21,17 @@
             </li>
             <li>
                 <span class="material-symbols-outlined">view_list</span>
-                <a href="#">Histórico de Chamadas</a>
+                <a href={{ url_for('historico.historico') }}>Histórico de Chamadas</a>
             </li>
-            <li>
-                <span class="material-symbols-outlined">sticky_note_2</span>
-                <a href="#">Pendências</a>
-            </li>
-            <hr>
+            <!-- <hr>
             <h4>Conta</h4>
             <li>
                 <span class="material-symbols-outlined">settings</span>
                 <a href="#">Configurações</a>
-            </li>
+            </li> -->
             <li>
                 <span class="material-symbols-outlined">logout</span>
-                <a href="#">Sair</a>
+                <a href={{ url_for('login.login') }}>Sair</a>
             </li>
         </ul>
     </aside>
@@ -70,22 +66,22 @@
         </div>
         <div class="grid-atendimentos">
             <table id="tabelaAtendimentos" class="tabela-atendimentos">
-                <tr>
-                    <th>ID</th>
-                    <th>Cliente</th>
-                    <th>Entidade</th>
-                    <th>Município</th>
-                    <th>Observações</th>
-                    <th>Data do atendimento</th>
+                <tr class="tabela-atendimentos-head">
+                    <th class="column1">ID</th>
+                    <th class="column2">Cliente</th>
+                    <th class="column3">Entidade</th>
+                    <th class="column4">Município</th>
+                    <th class="column5">Observações</th>
+                    <th class="column6">Data do atendimento</th>
                 </tr>
                 {% for atendimento in atendimentos %}
                     <tr>
-                        <td>{{ atendimento[0] }}</td>
-                        <td>{{ atendimento[1] }}</td>
-                        <td>{{ atendimento[2] }}</td>
-                        <td>{{ atendimento[3] }}</td>
-                        <td>{{ atendimento[4] }}</td>
-                        <td>{{ atendimento[5] }}</td>
+                        <td class="column1">{{ atendimento[0] }}</td>
+                        <td class="column2">{{ atendimento[1] }}</td>
+                        <td class="column3">{{ atendimento[2] }}</td>
+                        <td class="column4">{{ atendimento[3] }}</td>
+                        <td class="column5">{{ atendimento[4] }}</td>
+                        <td class="column6">{{ atendimento[5] }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -224,6 +220,7 @@
         font-weight: 500;
         white-space: nowrap;
         display: none;
+        width: 100%;
     }
 
     .sidebar:hover .links li a {
@@ -358,19 +355,87 @@
     }
 
     .grid-atendimentos {
+        position: relative;
+        top: 80px;
         margin-top: 25px;
-        height: 75%;
+        height: 480px;
         width: 95%;
         display: flex;
         align-items: flex-start;
         justify-content: center;
         border-radius: 8px;
+        overflow-y: auto;
     }
 
     .tabela-atendimentos {
         width: 100%;
-        background-color: #f0f0f0;
+        background-color: white;
+        border-collapse: collapse;
+        border: 10px;
+        overflow: hidden;
+        margin: 0 auto;
+        position: relative;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(17px);
+        --webkit-backdrop-filter: blur(17px);
     }
+
+    .tabela-atendimentos thead {
+        display: table-header-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    .tabela-atendimentos-head {
+        height: 30px;
+        background: rgba(255, 255, 255, 0.404);
+        backdrop-filter: blur(17px);
+        --webkit-backdrop-filter: blur(17px);
+    }
+
+    .tabela-atendimentos-head th {
+        font-size: 18px;
+        color: #000000;
+        line-height: 1.2;
+        font-weight: unset;
+    }
+
+    .column1 {
+        width: 30px;
+        padding-left: 40px;
+        text-align: center;
+        border-radius: 5px 0 0 0 ;
+    }
+
+    .column2 {
+        width: 200px;
+        text-align: center;
+    }
+
+    .column3 {
+        width: 200px;
+        text-align: center;
+    }
+
+    .column4 {
+        width: 200px;
+        text-align: right;
+        text-align: center;
+    }
+
+    .column5 {
+        width: 200px;
+        text-align: center;
+        height: auto;
+    }
+
+    .column6 {
+        width: 200px;
+        text-align: center;
+        border-radius: 0 5px 0 0;
+        height: 80px;
+    }
+    
 
     /*Mensagem de Sucesso ou Erro*/
     .msg-confirmation-or-error {

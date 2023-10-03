@@ -15,7 +15,9 @@ def register():
             usuario = None  # Defina para None ou outro valor padrão, dependendo da sua lógica
         senha = request.form.get('senha')
         data_atual = datetime.datetime.now()
-        hash, salt = cript.gera_hash(senha)
+        hash_gerado = cript.gera_hash(senha)
+        hash = hash_gerado['hash']
+        salt = hash_gerado['salt']
 
         conn = sqlite3.connect("./database/saturndb")
         cursor = conn.cursor()

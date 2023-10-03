@@ -12,7 +12,7 @@ O Projeto consiste em uma Aplicação Web para Registro de Atendimentos ao Clien
   - [X] Criptografar Senhas
   - [X] Validar Login
   - [X] Mensagem de erro ao logar errado
-- [ ] Principal
+- [X] Principal
   - [X] Atendimentos
     - [X] Criar tabela 'Atendimentos' no BD 
     - [x] Layout
@@ -20,6 +20,4 @@ O Projeto consiste em uma Aplicação Web para Registro de Atendimentos ao Clien
     - [X] Mensagem de sucesso e de erro
     - [X] Botão de Fechar
     - [X] Botão limpar
-  - [ ] Histórico
-  - [ ] Pendências
-  - [ ] Configurações
+  - [X] Histórico

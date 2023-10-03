@@ -21,21 +21,17 @@
             </li>
             <li>
                 <span class="material-symbols-outlined">view_list</span>
-                <a href="#">Histórico de Chamadas</a>
+                <a href={{ url_for('historico.historico') }}>Histórico de Chamadas</a>
             </li>
-            <li>
-                <span class="material-symbols-outlined">sticky_note_2</span>
-                <a href="#">Pendências</a>
-            </li>
-            <hr>
+            <!-- <hr>
             <h4>Conta</h4>
             <li>
                 <span class="material-symbols-outlined">settings</span>
                 <a href="#">Configurações</a>
-            </li>
+            </li> -->
             <li>
                 <span class="material-symbols-outlined">logout</span>
-                <a href="#">Sair</a>
+                <a href={{ url_for('login.login') }}>Sair</a>
             </li>
         </ul>
     </aside>
@@ -231,6 +227,7 @@
         font-weight: 500;
         white-space: nowrap;
         display: none;
+        width: 100%;
     }
 
     .sidebar:hover .links li a {

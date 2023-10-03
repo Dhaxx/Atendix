@@ -14,8 +14,9 @@ def gera_hash(senha):
     hash_obj.update(senha_com_salt.encode('utf-8'))
     hash_result = hash_obj.hexdigest()
     return {
-        salt,
-        hash_result}
+        'hash': hash_result,
+        'salt': salt
+        }
 
 def valida_hash(senha, salt):
     senha_com_salt = senha + salt

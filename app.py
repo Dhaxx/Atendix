@@ -1,7 +1,7 @@
 from flask import Flask, session
 from flask_session import Session
 import secrets
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='./templates')
 
 # Rotas dos outros módulos
 from login import login_bp
